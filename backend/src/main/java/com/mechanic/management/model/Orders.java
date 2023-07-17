@@ -1,12 +1,10 @@
 package com.mechanic.management.model;
 
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
@@ -27,11 +25,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
+    private Vehicles vehicle;
 
-    public Order() {
+    public Orders() {
     }
-    public Order(String orderName, String orderDescription, boolean status) {
+    public Orders(String orderName, String orderDescription, boolean status) {
         this.orderName = orderName;
         this.orderDescription = orderDescription;
         this.status = status;
@@ -77,11 +75,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public Vehicle getVehicle() {
+    public Vehicles getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(Vehicles vehicle) {
         this.vehicle = vehicle;
     }
 }
