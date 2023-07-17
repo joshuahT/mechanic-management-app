@@ -17,7 +17,7 @@ public class Vehicles {
     private String model;
     @Column(name = "year")
     private Long year;
-    @Column(name = "licnese_plate")
+    @Column(name = "license_plate")
     private String licensePlate;
 
     @ManyToOne

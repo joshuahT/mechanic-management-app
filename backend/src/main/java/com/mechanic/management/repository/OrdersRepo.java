@@ -1,7 +1,12 @@
 package com.mechanic.management.repository;
 
 import com.mechanic.management.model.Customer;
+import com.mechanic.management.model.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrdersRepo extends JpaRepository<Customer, Long> {
+import java.util.List;
+
+public interface OrdersRepo extends JpaRepository<Orders, Long> {
+    List<Orders> findByStatus(boolean status);
+
 }
