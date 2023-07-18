@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Orders {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_order_id_seq")
+    @SequenceGenerator(name = "orders_order_id_seq", sequenceName = "orders_order_id_seq", allocationSize = 1)
     @Column(name = "order_id")
     private Long orderId;
 
@@ -28,11 +29,6 @@ public class Orders {
     private Vehicles vehicle;
 
     public Orders() {
-    }
-    public Orders(String orderName, String orderDescription, boolean status) {
-        this.orderName = orderName;
-        this.orderDescription = orderDescription;
-        this.status = status;
     }
 
     public Long getOrderId() {
