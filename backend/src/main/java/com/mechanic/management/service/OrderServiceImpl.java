@@ -56,12 +56,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrdersDTO postOrder(OrdersDTO ordersDTO) {
+        // creates an instance of the model class Orders
         Orders orders = new Orders();
-        orders.setOrderName(orders.getOrderName());
+        // set the required attributes from the ordersDTO
+        orders.setOrderName(ordersDTO.getOrderName());
         orders.setStatus(ordersDTO.getStatus());
 
+        // Save the orders object to the database and get the saved state back
         Orders savedOrder = ordersRepo.saveAndFlush(orders);
 
+        // Create a new DTO instance based on the saved state and return it
         OrdersDTO savedOrders = new OrdersDTO();
         savedOrders.setOrderId(savedOrder.getOrderId());
         savedOrders.setStatus(savedOrder.getStatus());
