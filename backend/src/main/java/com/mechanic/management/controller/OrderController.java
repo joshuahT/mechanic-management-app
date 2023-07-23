@@ -28,13 +28,15 @@ public class OrderController {
     }
 
     @GetMapping("/active")
-    public List<Orders> getActiveOrders() {
-        return orderRepository.findByStatus(false);
+    public ResponseEntity<List<Orders>> getActiveOrders() {
+        List<Orders> activeOrders = orderRepository.findByStatus(false);
+        return ResponseEntity.ok(activeOrders);
     }
 
     @GetMapping("/past")
-    public List<Orders> getPastOrders() {
-        return orderRepository.findByStatus(true);
+    public ResponseEntity<List<Orders>> getPastOrders() {
+        List<Orders> pastOrders = orderRepository.findByStatus(true);
+        return ResponseEntity.ok(pastOrders);
     }
 
     @GetMapping("/{id}")
