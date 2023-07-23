@@ -6,6 +6,7 @@ import com.mechanic.management.repository.CustomerRepo;
 import com.mechanic.management.repository.OrdersRepo;
 import com.mechanic.management.repository.VehiclesRepo;
 import com.mechanic.management.service.OrderService;
+import org.apache.coyote.Response;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,12 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrdersDTO> postOrder(@RequestBody OrdersDTO ordersDto) {
         return ResponseEntity.ok(orderService.postOrder(ordersDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long id) throws ChangeSetPersister.NotFoundException{
+         orderRepository.deleteById(id);
+         return ResponseEntity.ok("Order with ID: " + id + "deleted");
     }
 
 }
