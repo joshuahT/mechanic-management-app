@@ -3,6 +3,8 @@ package com.mechanic.management.DTO;
 import com.mechanic.management.model.Customer;
 import com.mechanic.management.model.Vehicles;
 
+import java.util.List;
+
 public class OrdersDTO {
     private Long orderId;
     private String orderName;
