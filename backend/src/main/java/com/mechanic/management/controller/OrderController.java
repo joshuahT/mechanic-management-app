@@ -20,13 +20,14 @@ public class OrderController {
     private final VehiclesRepo vehicleRepository;
     private final OrderService orderService;
 
-    public OrderController(OrdersRepo orderRepository, CustomerRepo customerRepository, VehiclesRepo vehicleRepository, OrderService orderService) {
+    public OrderController(OrdersRepo orderRepository, CustomerRepo customerRepository, VehiclesRepo vehicleRepository,
+            OrderService orderService) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.vehicleRepository = vehicleRepository;
         this.orderService = orderService;
     }
-    // api
+
     @GetMapping("/active")
     public ResponseEntity<List<Orders>> getActiveOrders() {
         List<Orders> activeOrders = orderRepository.findByStatus(false);
@@ -50,4 +51,3 @@ public class OrderController {
     }
 
 }
-
