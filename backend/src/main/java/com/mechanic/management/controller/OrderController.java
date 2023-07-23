@@ -26,7 +26,7 @@ public class OrderController {
         this.vehicleRepository = vehicleRepository;
         this.orderService = orderService;
     }
-
+    // api
     @GetMapping("/active")
     public ResponseEntity<List<Orders>> getActiveOrders() {
         List<Orders> activeOrders = orderRepository.findByStatus(false);
