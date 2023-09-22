@@ -28,5 +28,3 @@ Follow these steps to get the application up and running:
 Use the intuitive UI to manage your mechanic shop efficiently. <br>
 Explore the graphical data visualization for valuable insights.
 
-## Figma
-![Figma](https://github.com/joshuahT/mechanic-management-app/assets/97864365/1a8c39e4-1199-4b80-84d8-92899ee31c0f)
