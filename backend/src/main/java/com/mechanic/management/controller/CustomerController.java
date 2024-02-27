@@ -7,6 +7,7 @@ import com.mechanic.management.repository.VehiclesRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.mechanic.management.service.CustomerService;
 
 import java.util.List;
 
@@ -14,19 +15,18 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/customer")
 public class CustomerController {
-    private final OrdersRepo orderRepository;
-    private final CustomerRepo customerRepository;
-    private final VehiclesRepo vehicleRepository;
 
-    public CustomerController(OrdersRepo orderRepository, CustomerRepo customerRepository, VehiclesRepo vehicleRepository){
-        this.orderRepository = orderRepository;
-        this.customerRepository = customerRepository;
-        this.vehicleRepository = vehicleRepository;
+    private final CustomerService customerService;
+
+
+    public CustomerController(CustomerService customerService){
+        this.customerService = customerService;
     }
 
     @GetMapping("/{customerId}")
     public ResponseEntity<List<Vehicles>> getVehiclesByCustomerId(@PathVariable Long customerId){
-        List<Vehicles> vehicles = vehicleRepository.findByCustomerCustomerId(customerId);
+
+        List<Vehicles> vehicles = customerService.getVehiclesByCustomerId(customerId);
 
         if(vehicles.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
