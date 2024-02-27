@@ -51,6 +51,7 @@ public class OrderController {
         orderRepository.save(existingOrder);
 
         return ResponseEntity.ok("Order with ID: "+ id + " status updated to "+ newStatus);
+
     }
 
     @GetMapping("/{id}")
