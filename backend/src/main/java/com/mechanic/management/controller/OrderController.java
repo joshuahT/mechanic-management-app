@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("orders")
 public class OrderController {
     private final OrdersRepo orderRepository;
@@ -39,6 +40,17 @@ public class OrderController {
     public ResponseEntity<List<Orders>> getPastOrders() {
         List<Orders> pastOrders = orderRepository.findByStatus(true);
         return ResponseEntity.ok(pastOrders);
+    }
+
+    @PutMapping("/{id}/update-status")
+    public ResponseEntity<String> updateOrdetStatus(@PathVariable Long id, @RequestParam boolean newStatus) throws ChangeSetPersister.NotFoundException{
+
+        Orders existingOrder = orderRepository.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+
+        existingOrder.setStatus(newStatus);
+        orderRepository.save(existingOrder);
+
+        return ResponseEntity.ok("Order with ID: "+ id + " status updated to "+ newStatus);
     }
 
     @GetMapping("/{id}")
