@@ -7,6 +7,8 @@ public class VehiclesDTO {
     private Long year;
     private String licensePlate;
 
+    private Long customerId;
+
     public VehiclesDTO() {
     }
 
@@ -49,7 +51,13 @@ public class VehiclesDTO {
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
+    public Long getCustomerId() {
+        return customerId;
+    }
 
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
     @Override
     public String toString() {
         return "VehiclesDTO{" +
