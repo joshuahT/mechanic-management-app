@@ -62,7 +62,14 @@ public class VehiclesController {
         vehicleDTO.setModel(vehicle.getModel());
         vehicleDTO.setYear(vehicle.getYear());
         vehicleDTO.setLicensePlate(vehicle.getLicensePlate());
+
+        // Set customer ID in DTO
+        if (vehicle.getCustomer() != null) {
+            vehicleDTO.setCustomerId(vehicle.getCustomer().getId());
+        }
+
         // You may need to set other fields depending on your entity structure
         return vehicleDTO;
     }
+
 }
