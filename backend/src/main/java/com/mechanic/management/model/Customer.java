@@ -8,8 +8,10 @@ public class Customer {
 
     @Id
     @Column(name = "customer_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_sequence")
+    @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_customer_id_seq", allocationSize = 1)
     private Long customerId;
+
 
     @Column(name = "phone_number")
     private Long phoneNumber;

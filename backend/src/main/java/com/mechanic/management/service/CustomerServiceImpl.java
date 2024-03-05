@@ -32,6 +32,27 @@ public class CustomerServiceImpl implements CustomerService{
                 .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
     }
 
+    @Override
+    public CustomerDTO createOrUpdateCustomer(CustomerDTO customerDTO){
+        Customer customer = new Customer();
+        customer.setName(customerDTO.getName());
+        customer.setPhoneNumber(customerDTO.getPhoneNumber());
+        customer.setEmail(customerDTO.getEmail());
+        customer.setAddress(customerDTO.getAddress());
+
+        Customer savedCustomer = customerRepo.saveAndFlush(customer);
+
+        CustomerDTO savedCustomerDTO = new CustomerDTO();
+        // Set properties of savedCustomerDTO from savedCustomer
+        savedCustomerDTO.setCustomerId(savedCustomer.getId());
+        savedCustomerDTO.setName(savedCustomer.getName());
+        savedCustomerDTO.setPhoneNumber(savedCustomer.getPhoneNumber());
+        savedCustomerDTO.setEmail(savedCustomer.getEmail());
+        savedCustomerDTO.setAddress(savedCustomer.getAddress());
+
+        return savedCustomerDTO;
+    }
+
 
 
 

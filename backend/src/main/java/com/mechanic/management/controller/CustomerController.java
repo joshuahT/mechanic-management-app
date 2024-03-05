@@ -1,5 +1,6 @@
 package com.mechanic.management.controller;
 
+import com.mechanic.management.DTO.CustomerDTO;
 import com.mechanic.management.model.Vehicles;
 import com.mechanic.management.repository.CustomerRepo;
 import com.mechanic.management.repository.OrdersRepo;
@@ -32,6 +33,12 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(vehicles, HttpStatus.OK);
+    }
+
+    @PostMapping("/createOrUpdate")
+    public ResponseEntity<CustomerDTO> createOrUpdateCustomer(@RequestBody CustomerDTO customerDTO) {
+        CustomerDTO savedCustomerDTO = customerService.createOrUpdateCustomer(customerDTO);
+        return new ResponseEntity<>(savedCustomerDTO, HttpStatus.OK);
     }
 
 
