@@ -1,11 +1,23 @@
 package com.mechanic.management.DTO;
 
+import java.util.List;
+
 public class CustomerDTO {
     private Long customerId;
     private Long phoneNumber;
     private String name;
     private String email;
     private String address;
+
+    private List<VehiclesDTO> vehicles;
+
+    public List<VehiclesDTO> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<VehiclesDTO> vehicles) {
+        this.vehicles = vehicles;
+    }
 
     public CustomerDTO() {
     }

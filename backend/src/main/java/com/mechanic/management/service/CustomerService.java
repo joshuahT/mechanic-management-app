@@ -13,4 +13,6 @@ public interface CustomerService {
     Customer getCustomerById(Long customerId) throws ChangeSetPersister.NotFoundException;
 
     CustomerDTO createOrUpdateCustomer(CustomerDTO customer);
+
+    List<CustomerDTO> getAllCustomersWithVehicles();
 }

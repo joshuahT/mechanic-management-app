@@ -1,6 +1,7 @@
 package com.mechanic.management.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -12,6 +13,24 @@ public class Customer {
     @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_customer_id_seq", allocationSize = 1)
     private Long customerId;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Vehicles> vehicles;
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public List<Vehicles> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicles> vehicles) {
+        this.vehicles = vehicles;
+    }
 
     @Column(name = "phone_number")
     private Long phoneNumber;
