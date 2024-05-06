@@ -1,4 +1,5 @@
 package com.mechanic.management.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +14,7 @@ public class Customer {
     @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_customer_id_seq", allocationSize = 1)
     private Long customerId;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private List<Vehicles> vehicles;
 

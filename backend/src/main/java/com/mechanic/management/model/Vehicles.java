@@ -1,4 +1,5 @@
 package com.mechanic.management.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ public class Vehicles {
     @Column(name = "license_plate")
     private String licensePlate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
