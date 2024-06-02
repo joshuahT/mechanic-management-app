@@ -1,5 +1,7 @@
 package com.mechanic.management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,10 +23,18 @@ public class Orders {
 
     @Column(name = "status")
     private Boolean status;
-    @ManyToOne
+
+    @Column(name = "price")
+    private Long price;
+
+    @Column(name = "cost")
+    private Long cost;
+
+//    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicles vehicle;
@@ -63,6 +73,23 @@ public class Orders {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Long getCost() {
+        return cost;
+    }
+
+    public void setCost(Long cost) {
+        this.cost = cost;
+    }
+
 
     public Customer getCustomer() {
         return customer;

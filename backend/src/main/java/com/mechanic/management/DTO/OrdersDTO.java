@@ -10,6 +10,25 @@ public class OrdersDTO {
     private String orderName;
     private String orderDescription;
     private Boolean status;
+    private Long price;
+    private Long cost;
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Long getCost() {
+        return cost;
+    }
+
+    public void setCost(Long cost) {
+        this.cost = cost;
+    }
+
     private CustomerDTO customer;
     private VehiclesDTO vehicles;
 
