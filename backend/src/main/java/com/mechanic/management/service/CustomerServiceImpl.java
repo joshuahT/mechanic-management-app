@@ -65,6 +65,14 @@ public class CustomerServiceImpl implements CustomerService{
                 .collect(Collectors.toList());
     }
 
+    public List<CustomerDTO> getAllCustomers(){
+        List<Customer> allCustomers = customerRepo.findAll();
+
+        return allCustomers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     private CustomerDTO convertToDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         // set customerDTO fields from customer

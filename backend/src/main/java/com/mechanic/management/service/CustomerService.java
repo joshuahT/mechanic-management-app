@@ -15,4 +15,6 @@ public interface CustomerService {
     CustomerDTO createOrUpdateCustomer(CustomerDTO customer);
 
     List<CustomerDTO> getAllCustomersWithVehicles();
+
+    List<CustomerDTO> getAllCustomers();
 }
