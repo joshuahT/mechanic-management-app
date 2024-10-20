@@ -57,10 +57,8 @@ public class CustomerController {
         List<CustomerDTO> customers = customerService.getAllCustomers();
 
         if (customers.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.isEmpty);
         }
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
-
-
 }
