@@ -2,14 +2,10 @@ package com.mechanic.management.controller;
 
 import com.mechanic.management.DTO.CustomerDTO;
 import com.mechanic.management.model.Vehicles;
-import com.mechanic.management.repository.CustomerRepo;
-import com.mechanic.management.repository.OrdersRepo;
-import com.mechanic.management.repository.VehiclesRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.mechanic.management.service.CustomerService;
-import com.mechanic.management.model.Customer;
 
 import java.util.List;
 
@@ -47,7 +43,7 @@ public class CustomerController {
         List<CustomerDTO> customers = customerService.getAllCustomersWithVehicles();
 
         if (customers.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
@@ -57,10 +53,8 @@ public class CustomerController {
         List<CustomerDTO> customers = customerService.getAllCustomers();
 
         if (customers.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
-
-
 }
