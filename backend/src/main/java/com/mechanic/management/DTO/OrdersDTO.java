@@ -90,6 +90,8 @@ public class OrdersDTO {
                 ", orderName='" + orderName + '\'' +
                 ", orderDescription='" + orderDescription + '\'' +
                 ", status=" + status +
+                ", price=" + price +
+                ", cost=" + cost +
                 ", customer=" + customer +
                 ", vehicles=" + vehicles +
                 '}';

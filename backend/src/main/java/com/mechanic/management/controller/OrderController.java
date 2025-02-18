@@ -54,6 +54,11 @@ public class OrderController {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<OrdersDTO> putOrder(@RequestBody OrdersDTO ordersDto) throws ChangeSetPersister.NotFoundException {
+        return ResponseEntity.ok(orderService.putOrder(ordersDto));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrdersDTO> getOrder(@PathVariable Long id) throws ChangeSetPersister.NotFoundException {
         return ResponseEntity.ok(orderService.getOrderByID(id));

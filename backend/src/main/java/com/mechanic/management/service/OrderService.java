@@ -15,5 +15,7 @@ public interface OrderService {
 
     OrdersDTO postOrder(OrdersDTO ordersDTO);
 
+    OrdersDTO putOrder(OrdersDTO ordersDTO);
+
 
 }
