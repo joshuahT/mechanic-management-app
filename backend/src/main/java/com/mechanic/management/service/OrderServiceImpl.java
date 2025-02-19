@@ -9,6 +9,7 @@ import com.mechanic.management.model.Vehicles;
 import com.mechanic.management.repository.CustomerRepo;
 import com.mechanic.management.repository.OrdersRepo;
 import com.mechanic.management.repository.VehiclesRepo;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -37,23 +38,36 @@ public class OrderServiceImpl implements OrderService {
     public OrdersDTO getOrderByID(Long Id) throws ChangeSetPersister.NotFoundException {
         Orders ordersEntity = ordersRepo.findById(Id).orElseThrow(ChangeSetPersister.NotFoundException::new);
         OrdersDTO orders = new OrdersDTO();
+
         orders.setOrderDescription(ordersEntity.getOrderDescription());
         orders.setOrderId(ordersEntity.getOrderId());
         orders.setStatus(ordersEntity.getStatus());
+        orders.setCost(ordersEntity.getCost());
+        orders.setPrice(ordersEntity.getPrice());
         orders.setOrderName(ordersEntity.getOrderName());
+
         Customer customerEntity = ordersEntity.getCustomer();
         if (customerEntity != null) {
             CustomerDTO customerDTO = new CustomerDTO();
+
             customerDTO.setCustomerId(customerEntity.getId());
             customerDTO.setName(customerEntity.getName());
-            // Set other relevant fields from the Customer entity to the CustomerDTO
+            customerDTO.setPhoneNumber(customerEntity.getPhoneNumber());
+            customerDTO.setEmail(customerEntity.getEmail());
+            customerDTO.setAddress(customerEntity.getAddress());
+
             orders.setCustomer(customerDTO);
         }
         Vehicles vehicleEntity = ordersEntity.getVehicle();
         if(vehicleEntity != null){
+
             VehiclesDTO vehicleDTO = new VehiclesDTO();
+
             vehicleDTO.setVehicleId(vehicleEntity.getVehicleId());
             vehicleDTO.setMake(vehicleEntity.getMake());
+            vehicleDTO.setModel(vehicleEntity.getModel());
+            vehicleDTO.setYear(vehicleEntity.getYear());
+            vehicleDTO.setLicensePlate(vehicleEntity.getLicensePlate());
 
             orders.setVehicles(vehicleDTO);
 
@@ -116,9 +130,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrdersDTO putOrder(OrdersDTO ordersDTO){
+    public OrdersDTO putOrder(OrdersDTO ordersDTO) {
         // right now it gives us everything but the customer and vehicles changes for some reason. even though when
+        //OrdersDTO{orderId=22, orderName='Test', orderDescription='This is a test', status=false, price=10, cost=1, customer=CustomerDTO{customerId=12, phoneNumber=1111111111, name='John', email='johndoe@gmail.com', address='N/A'}, vehicles=null}
+        //OrdersDTO{orderId=22, orderName='Test', orderDescription='This is a test', status=false, price=null, cost=null, customer=CustomerDTO{customerId=12, phoneNumber=null, name='John', email='null', address='null'}, vehicles=VehiclesDTO{vehicleId=7, make='Toyota', model='null', year=null, licensePlate='null'}}
+
+        // from the database, i can see that postOrder saved everything correctly, but for some reason this getbyOrderID is wrong. *BLOCKER; fix this first * Fixed
         System.out.println(ordersDTO);
+
+        try {
+            OrdersDTO existingOrder = getOrderByID(ordersDTO.getOrderId());
+            System.out.println(existingOrder);
+        } catch (ChangeSetPersister.NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         return null;
     }
 }
