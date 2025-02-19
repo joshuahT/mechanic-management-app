@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
             vehicleDTO.setYear(vehicleEntity.getYear());
             vehicleDTO.setLicensePlate(vehicleEntity.getLicensePlate());
 
-            orders.setVehicles(vehicleDTO);
+            orders.setVehicle(vehicleDTO);
 
         }
         return orders;
@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
             }
 
             // Fetch and set the vehicle
-            vehiclesDTO = ordersDTO.getVehicles();
+            vehiclesDTO = ordersDTO.getVehicle();
             if (vehiclesDTO != null) {
                 Vehicles vehicle = vehicleRepo.findById(vehiclesDTO.getVehicleId())
                         .orElseThrow(() -> new ChangeSetPersister.NotFoundException());
@@ -123,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
         savedOrders.setCost(savedOrder.getCost());
         savedOrders.setStatus(savedOrder.getStatus());
         savedOrders.setCustomer(customerDTO);
-        savedOrders.setVehicles(vehiclesDTO);
+        savedOrders.setVehicle(vehiclesDTO);
 
 
         return savedOrders;

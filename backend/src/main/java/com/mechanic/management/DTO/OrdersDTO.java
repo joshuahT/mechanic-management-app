@@ -30,7 +30,7 @@ public class OrdersDTO {
     }
 
     private CustomerDTO customer;
-    private VehiclesDTO vehicles;
+    private VehiclesDTO vehicle;
 
     public OrdersDTO() {
     }
@@ -75,12 +75,12 @@ public class OrdersDTO {
         this.customer = customer;
     }
 
-    public VehiclesDTO getVehicles() {
-        return vehicles;
+    public VehiclesDTO getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicles(VehiclesDTO vehicles) {
-        this.vehicles = vehicles;
+    public void setVehicle(VehiclesDTO vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class OrdersDTO {
                 ", price=" + price +
                 ", cost=" + cost +
                 ", customer=" + customer +
-                ", vehicles=" + vehicles +
+                ", vehicles=" + vehicle +
                 '}';
     }
 }
