@@ -68,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
             vehicleDTO.setModel(vehicleEntity.getModel());
             vehicleDTO.setYear(vehicleEntity.getYear());
             vehicleDTO.setLicensePlate(vehicleEntity.getLicensePlate());
+            vehicleDTO.setCustomerId(vehicleEntity.getCustomer().getCustomerId());
 
             orders.setVehicle(vehicleDTO);
 
@@ -77,6 +78,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrdersDTO postOrder(OrdersDTO ordersDTO) {
+        System.out.println(ordersDTO);
         // creates an instance of the model class Orders
         Orders orders = new Orders();
         // set the required attributes from the ordersDTO

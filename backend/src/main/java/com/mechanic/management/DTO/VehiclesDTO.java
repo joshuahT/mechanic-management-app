@@ -58,6 +58,7 @@ public class VehiclesDTO {
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
+
     @Override
     public String toString() {
         return "VehiclesDTO{" +
@@ -66,6 +67,7 @@ public class VehiclesDTO {
                 ", model='" + model + '\'' +
                 ", year=" + year +
                 ", licensePlate='" + licensePlate + '\'' +
+                ", customerId=" + customerId +
                 '}';
     }
 }
