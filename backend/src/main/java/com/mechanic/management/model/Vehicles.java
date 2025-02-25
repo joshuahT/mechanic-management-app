@@ -22,10 +22,15 @@ public class Vehicles {
     @Column(name = "license_plate")
     private String licensePlate;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    // Expose only customerId if needed
+    public Long getCustomerId() {
+        return customer != null ? customer.getCustomerId() : null;
+    }
 
     public Long getVehicleId() {
         return vehicleId;
