@@ -89,7 +89,7 @@ public class Vehicles {
                 ", model='" + model + '\'' +
                 ", year=" + year +
                 ", licensePlate='" + licensePlate + '\'' +
-                ", customer=" + customer +
+                ", customer=ID" + getCustomerId() + // if i do customer it is infinite recursion, based on our schema, we actually don't use the whole customer object rather just the foreign key of the customer ID
                 '}';
     }
 }
