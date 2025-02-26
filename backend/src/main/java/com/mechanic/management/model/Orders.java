@@ -99,6 +99,20 @@ public class Orders {
         this.customer = customer;
     }
 
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", orderName='" + orderName + '\'' +
+                ", orderDescription='" + orderDescription + '\'' +
+                ", status=" + status +
+                ", price=" + price +
+                ", cost=" + cost +
+                ", customer=" + customer +
+                ", vehicle=" + vehicle +
+                '}';
+    }
+
     public Vehicles getVehicle() {
         return vehicle;
     }
