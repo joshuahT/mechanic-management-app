@@ -35,7 +35,7 @@ public class OrdersDTO {
     public OrdersDTO() {
     }
 
-    public Long getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
