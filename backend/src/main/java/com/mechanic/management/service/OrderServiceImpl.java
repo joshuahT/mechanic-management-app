@@ -139,12 +139,18 @@ public class OrderServiceImpl implements OrderService {
         // from the database, i can see that postOrder saved everything correctly, but for some reason this getbyOrderID is wrong. *BLOCKER; fix this first * Fixed
         System.out.println(ordersDTO);
 
-        try {
-            OrdersDTO existingOrder = getOrderByID(ordersDTO.getOrderId());
-            System.out.println(existingOrder);
-        } catch (ChangeSetPersister.NotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        Orders existingOrder = ordersRepo.findById(ordersDTO.getOrderId());
+        System.out.println(existingOrder);
+
+        existingOrder.setOrderName(ordersDTO.getOrderName());
+        existingOrder.setOrderDescription(ordersDTO.getOrderDescription());
+        existingOrder.setCost(ordersDTO.getCost());
+        existingOrder.setPrice(ordersDTO.getPrice());
+
+        System.out.println(existingOrder);
+
+
+        ordersRepo.saveAndFlush(existingOrder);
 
         return null;
     }
